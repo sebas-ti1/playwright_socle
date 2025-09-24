@@ -29,9 +29,13 @@ npx playwright test                                 # Lancer tous les tests
 
 npx playwright test tests/example.spec.ts --debug   # Ouvrir le mode debug sur le fichier example.soec.ts
 
-npx playwright codegen --output=tests/onepoint.spec.ts https://www.groupeonepoint.com/fr/ # Générer du code avec CODEGEN sur l'url définie et enregistrer dans le fichier onepoint.spec.ts
+npx playwright codegen                              # Générer du code avec CODEGEN
+                --output=tests/onepoint.spec.ts     # Enregistrer dans le fichier onepoint.spec.ts
+                https://www.groupeonepoint.com/fr/  # Ouvre cette url
 
 npx playwright test --ui                            # Ouvrir le mode UI
+
+npx playwright test --ui                            # Ouvrir le rapport d'exécution
 
 ```
 Ces commandes sont définies dans le fichier package.json, partie Script.
@@ -59,5 +63,36 @@ Ces commandes sont définies dans le fichier package.json, partie Script.
 ├── index.html                  # Fichier HTML utilisé pour faire les tests en localhost:5000
 │
 ├── playwright.config.ts        # Configuration principale de Playwright
-└── package.json                # L'ensemble necessaire à l'installation, et les scripts de lancement des tests
+└── package.json                # L'ensemble necessaire à l'installation, 
+                                # et les scripts de lancement des tests.
+```
+
+### Localhost
+Le fichier index.html à la racine est lancé avec la dépendance 'http-server'.
+
+Dans 'playwright.config.ts', vous pouvez modifier la configuration à ce niveau :
+```
+  webServer:{
+    command: 'npx http-server -p 5000 ./',
+    url: 'http://localhost:5000/',
+    reuseExistingServer: true,
+    timeout:2_000
+  },
+```
+
+Ensuite dans le fichier 'index.html', vous changez le style du bouton pour tester le système de snapshot :
+```
+    <style>
+        button{
+            border: none;
+            color: white;
+            background-color: blue;
+            padding: 15px;
+        }
+    </style>
+```
+
+Enfin vous pouvez mettre à jour les snapshots avec cette commande :
+```
+npx playwright test --update-snapshots
 ```

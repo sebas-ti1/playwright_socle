@@ -27,7 +27,7 @@ Une liste de commande pour exécuter les tests :
 ```
 npx playwright test                                 # Lancer tous les tests
 
-npx playwright test tests/example.spec.ts --debug   # Ouvrir le mode debug sur le fichier example.soec.ts
+npx playwright test tests/example.spec.ts --debug   # Ouvrir le mode debug sur le fichier example.spec.ts
 
 npx playwright codegen                              # Générer du code avec CODEGEN
                 --output=tests/onepoint.spec.ts     # Enregistrer dans le fichier onepoint.spec.ts
@@ -35,7 +35,7 @@ npx playwright codegen                              # Générer du code avec COD
 
 npx playwright test --ui                            # Ouvrir le mode UI
 
-npx playwright test --ui                            # Ouvrir le rapport d'exécution
+npx playwright show-report                          # Ouvrir le rapport d'exécution
 
 ```
 Ces commandes sont définies dans le fichier package.json, partie Script.
@@ -62,12 +62,12 @@ Ces commandes sont définies dans le fichier package.json, partie Script.
 │
 ├── index.html                  # Fichier HTML utilisé pour faire les tests en localhost:5000
 │
-├── playwright.config.ts        # Configuration principale de Playwright
-└── package.json                # L'ensemble necessaire à l'installation, 
+├── playwright.config.ts        # Configuration principale de Playwright,
+└── package.json                # l'ensemble necessaire à l'installation, 
                                 # et les scripts de lancement des tests.
 ```
 
-### Localhost
+## HTTP Server
 Le fichier index.html à la racine est lancé avec la dépendance 'http-server'.
 
 Dans 'playwright.config.ts', vous pouvez modifier la configuration à ce niveau :
@@ -95,4 +95,10 @@ Ensuite dans le fichier 'index.html', vous changez le style du bouton pour teste
 Enfin vous pouvez mettre à jour les snapshots avec cette commande :
 ```
 npx playwright test --update-snapshots
+```
+
+## Contact
+Pour toutes questions ou remarques, vous pouvez me joindre par mail :
+```
+s.brule@groupeonepoint.com
 ```
